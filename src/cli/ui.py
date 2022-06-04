@@ -1,6 +1,7 @@
 import os
 import subprocess
 import sys
+from platform import system
 from sys import exit
 from src.info import AppInfo, color_text, format_text, surprise
 from src.util.os_version import os_ver
@@ -8,7 +9,7 @@ from src.util.dump_functions.text import dump_txt
 from src.util.dump_functions.json import dump_json
 from src.util.dump_functions.xml import dump_xml
 from src.util.dump_functions.plist import dump_plist
-from src.managers.tree import tree
+from src.util.tree import tree
 
 
 def hack_disclaimer():
@@ -44,8 +45,10 @@ def title():
 
 
 def clear():
-    if sys.platform == "win32":
+    if system().lower() == "windows":
         os.system("cls")
+    elif system().lower() == "linux":
+        os.system("clear")
     elif sys.platform == "darwin":
         # Special thanks to [A.J Uppal](https://stackoverflow.com/users/3113477/a-j-uppal) for this!
         # Original comment: https://stackoverflow.com/a/29887659/13120761
@@ -54,8 +57,6 @@ def clear():
         print("\033c", end="")
         print("\033[3J", end="")
         print("\033c", end="")
-    elif sys.platform == "linux":
-        os.system("clear")
 
 
 class UI:
