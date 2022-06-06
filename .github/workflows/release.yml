@@ -18,6 +18,9 @@ jobs:
         with:
           ref: releases-source
 
+      - name: Remove local tool cache for Py
+        run: rm -rf /Users/runner/hostedtoolcache/Python
+
       - name: Set up Python 3
         uses: actions/setup-python@v2
         with:
