@@ -10,6 +10,9 @@ on:
 
 jobs:
   macOS:
+    strategy:
+      matrix:
+        arch: [x86_64, arm64]
     permissions: write-all
     name: Build OSX binaries
     runs-on: macos-latest
@@ -39,7 +42,7 @@ jobs:
         run: brew install create-dmg
 
       - name: Build app bundle & binaries for OSX
-        run: pyinstaller main.py --onefile --windowed --name OCSysInfo --icon=./resources/icons/OCSI_logo_mac.icns --paths=./src --target-architecture universal2
+        run: pyinstaller main.py --onefile --windowed --name OCSysInfo --icon=./resources/icons/OCSI_logo_mac.icns --paths=./src --target-architecture ${{ matrix.arch }}
 
       - name: Apply app bundle patch
         run: |
@@ -56,21 +59,21 @@ jobs:
               --window-pos 200 120 \
               --icon "OCSysInfo.app" 300 202 \
               --window-size 800 400 \
-              --app-drop-link 600 200 "ocsysinfo_osx_universal.dmg" "dist/" \
+              --app-drop-link 600 200 "ocsysinfo_osx_${{ matrix.arch }}.dmg" "dist/" \
               --no-internet-enable
 
       - name: Upload to Artifacts
         uses: actions/upload-artifact@v2
         with:
           name: Artifacts OSX
-          path: ocsysinfo_osx_universal.dmg
+          path: ocsysinfo_osx_${{ matrix.arch }}.dmg
 
       - name: Upload to Release
         if: github.event_name == 'release'
         uses: svenstaro/upload-release-action@e74ff71f7d8a4c4745b560a485cc5fdb9b5b999d
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: ocsysinfo_osx_universal.dmg
+          file: ocsysinfo_osx_${{ matrix.arch }}.dmg
           tag: ${{ github.ref }}
           file_glob: true
 
