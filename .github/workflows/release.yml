@@ -37,8 +37,11 @@ jobs:
           TESTENV=$(which python3)
           file $TESTENV
 
+      - name: Look into the framework
+        run: ls /Users/runner/hostedtoolcache/Python/3.10.4/
+
       - name: Validate FAT binary Mach-O compatibility
-        run: file /Users/runner/hostedtoolcache/Python/3.10.4/x64/lib/python3.10/lib-dynload/_struct.cpython-310-darwin.so
+        run: file /Users/runner/hostedtoolcache/Python/3.10.4/arm64/lib/python3.10/lib-dynload/_struct.cpython-310-darwin.so
 
       - name: Update pip
         run: python3 -m pip install --upgrade pip
