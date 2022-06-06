@@ -29,20 +29,26 @@ jobs:
         with:
           python-version: "3.10.x"
 
+      - name: Validate python version and Mach-O compatiblity
+        run: |
+          echo $(python3 --version)
+          TESTENV=$(which python3)
+          echo $TESTENV
+
       - name: Update pip
-        run: pip3 install --upgrade pip
+        run: python3 -m pip install --upgrade pip
 
       - name: Install dependencies
-        run: pip3 install -r requirements.txt
+        run: python3 -m pip install -r requirements.txt
 
       - name: Install pyinstaller
-        run: pip3 install pyinstaller
+        run: python3 -m pip install pyinstaller
 
       - name: Install create-dmg
         run: brew install create-dmg
 
       - name: Build app bundle & binaries for OSX
-        run: pyinstaller main.py --onefile --windowed --name OCSysInfo --icon=./resources/icons/OCSI_logo_mac.icns --paths=./src --target-architecture ${{ matrix.arch }}
+        run: python3 -m pyinstaller main.py --onefile --windowed --name OCSysInfo --icon=./resources/icons/OCSI_logo_mac.icns --paths=./src --target-architecture ${{ matrix.arch }}
 
       - name: Apply app bundle patch
         run: |
