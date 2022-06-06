@@ -35,7 +35,7 @@ jobs:
       - name: Validate Mach-O compatibility
         run: |
           TESTENV=$(which python3)
-          echo $TESTENV
+          file $TESTENV
 
       - name: Update pip
         run: python3 -m pip install --upgrade pip
