@@ -155,6 +155,8 @@ python3 -m pip install -r requirements.txt
 ```sh
 # Run the script
 python3 main.py
+# Or for a guided usage...
+python3 tui.py
 ```
 
 ## Implementations
