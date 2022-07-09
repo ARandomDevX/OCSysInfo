@@ -14,7 +14,9 @@ A basic, high-level and efficient CLI for discovering hardware information about
 <a href="https://github.com/KernelWanderers/OCSysInfo/releases/"><img src="https://img.shields.io/github/downloads/KernelWanderers/OCSysInfo/total?color=%231DE2D0&style=for-the-badge" /></a>
 <img src="https://img.shields.io/github/workflow/status/KernelWanderers/OCSysInfo/Compile%20and%20publish%20binaries?style=for-the-badge" />
 
-<img src="./resources/icons/macstadium.png" width=200/>
+<br />
+
+If you need any help or have any questions, please feel free to let us know over at our [support server](https://discord.gg/PzDzccyDJA)
 
 </div>
 
@@ -134,8 +136,9 @@ A basic, high-level and efficient CLI for discovering hardware information about
 
 ## Installation
 
-Firstly, we do not support `Python 2` – the only support provided is for `Python 3.9` and greater. <br />
-So please ensure you have `Python 3.9` or greater installed.
+> **Warning**
+> Firstly, we do not support `Python 2` – the only support provided is for `Python 3.9` and greater. <br />
+> So please ensure you have `Python 3.9` or greater installed.
 
 In order to install `OCSysInfo`, you can either download the repository manually via GitHub, or via Git.
 <br />

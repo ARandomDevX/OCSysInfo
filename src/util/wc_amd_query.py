@@ -1,6 +1,9 @@
 import requests
 import re
 
+from src import info
+from src.info import color_text
+
 BASE_URL = "https://en.wikichip.org/wiki/amd"
 
 
@@ -34,7 +37,7 @@ def parse_codename(cpu_name):
     URL = URL.replace(" ", "_")
 
     try:
-        contents = requests.get(URL).content.decode("utf-8")
+        contents = requests.get(URL, timeout=info.requests_timeout, headers=info.useragent_header).content.decode("utf-8")
     except Exception as e:
         if isinstance(e, requests.ConnectionError):
             return
